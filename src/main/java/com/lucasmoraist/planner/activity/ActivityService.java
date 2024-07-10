@@ -1,5 +1,6 @@
 package com.lucasmoraist.planner.activity;
 
+import com.lucasmoraist.planner.exception.DatesInconsistency;
 import com.lucasmoraist.planner.trip.Trip;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,17 @@ public class ActivityService {
                 .occursAt(LocalDateTime.parse(payload.occursAt(), DateTimeFormatter.ISO_DATE_TIME))
                 .trip(trip)
                 .build();
+
+        LocalDateTime startAt = activity.getTrip().getStartAt();
+        LocalDateTime endAt = activity.getTrip().getEndAt();
+
+        // isBefore -> ele faz a função de verificar se a data é anterior a outra
+        // isAfter -> ele faz a função de verificar se a data é posterior a outra
+        if(activity.getOccursAt().isBefore(startAt)){
+            throw new DatesInconsistency("This event will occur before the travel date");
+        }else if(activity.getOccursAt().isAfter(endAt)){
+            throw new DatesInconsistency("This event will occur after the travel date");
+        }
 
         this.repository.save(activity);
 
