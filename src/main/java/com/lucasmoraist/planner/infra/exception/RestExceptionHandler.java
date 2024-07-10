@@ -1,7 +1,7 @@
 package com.lucasmoraist.planner.infra.exception;
 
-import com.lucasmoraist.planner.exceptions.ExceptionDTO;
-import com.lucasmoraist.planner.exceptions.ResourceNotFound;
+import com.lucasmoraist.planner.exception.ExceptionDTO;
+import com.lucasmoraist.planner.exception.ResourceNotFound;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
