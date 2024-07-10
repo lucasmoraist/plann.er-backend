@@ -1,6 +1,6 @@
 package com.lucasmoraist.planner.participant;
 
-import com.lucasmoraist.planner.exceptions.ResourceNotFound;
+import com.lucasmoraist.planner.exception.ResourceNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
