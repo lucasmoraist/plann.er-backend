@@ -1,6 +1,6 @@
 package com.lucasmoraist.planner.participant;
 
-import com.lucasmoraist.planner.trips.Trip;
+import com.lucasmoraist.planner.trip.Trip;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
