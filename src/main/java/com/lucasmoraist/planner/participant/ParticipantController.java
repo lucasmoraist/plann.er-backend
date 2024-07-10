@@ -1,6 +1,7 @@
 package com.lucasmoraist.planner.participant;
 
 import com.lucasmoraist.planner.exception.ResourceNotFound;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,22 +11,17 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/participants")
+@Slf4j
 public class ParticipantController {
 
     @Autowired
-    private ParticipantRepository participantRepository;
+    private ParticipantService service;
 
     @PostMapping("{id}/confirm")
     public ResponseEntity<Participant> confirmedParticipants(@PathVariable UUID id, @RequestBody ParticipantRequestPayload payload){
-        Optional<Participant> participants = this.participantRepository.findById(id);
+        Participant participant = this.service.confirmedParticipants(id, payload);
 
-        if(participants.isEmpty()) throw new ResourceNotFound("Participant not found");
-
-        Participant participant = participants.get();
-        participant.setConfirmed(true);
-        participant.setName(payload.name());
-
-        this.participantRepository.save(participant);
+        log.info("Participant confirmed");
 
         return ResponseEntity.ok().body(participant);
     }
