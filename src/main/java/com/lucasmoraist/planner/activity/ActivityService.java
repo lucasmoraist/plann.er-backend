@@ -39,7 +39,7 @@ public class ActivityService {
         // isAfter -> ele faz a função de verificar se a data é posterior a outra
         if(activity.getOccursAt().isBefore(startAt)){
             throw new DatesInconsistency("This event will occur before the travel date");
-        }else if(activity.getOccursAt().isAfter(endAt)){
+        }else if(activity.getOccursAt().isAfter(endAt.plusDays(1).toLocalDate().atStartOfDay())){
             throw new DatesInconsistency("This event will occur after the travel date");
         }
 
