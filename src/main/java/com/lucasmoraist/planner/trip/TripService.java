@@ -1,9 +1,6 @@
 package com.lucasmoraist.planner.trip;
 
-import com.lucasmoraist.planner.activity.ActivityData;
-import com.lucasmoraist.planner.activity.ActivityRequestPayload;
-import com.lucasmoraist.planner.activity.ActivityResponse;
-import com.lucasmoraist.planner.activity.ActivityService;
+import com.lucasmoraist.planner.activity.*;
 import com.lucasmoraist.planner.exception.DatesInconsistency;
 import com.lucasmoraist.planner.exception.ResourceNotFound;
 import com.lucasmoraist.planner.link.LinkData;
@@ -89,7 +86,7 @@ public class TripService {
         return this.activityService.registerActivity(payload, trip);
     }
 
-    public List<ActivityData> getAllActivities(UUID idTrip) {
+    public List<ActivityDataResponse> getAllActivities(UUID idTrip) {
         return this.activityService.getAllActivities(idTrip);
     }
 

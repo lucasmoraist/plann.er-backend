@@ -1,6 +1,7 @@
 package com.lucasmoraist.planner.trip;
 
 import com.lucasmoraist.planner.activity.ActivityData;
+import com.lucasmoraist.planner.activity.ActivityDataResponse;
 import com.lucasmoraist.planner.activity.ActivityRequestPayload;
 import com.lucasmoraist.planner.activity.ActivityResponse;
 import com.lucasmoraist.planner.link.LinkData;
@@ -75,9 +76,9 @@ public class TripController {
     // Activity
 
     @GetMapping("{idTrip}/activities")
-    public ResponseEntity<List<ActivityData>> getAllActivities(@PathVariable UUID idTrip) {
+    public ResponseEntity<List<ActivityDataResponse>> getAllActivities(@PathVariable UUID idTrip) {
         log.info("Getting all participants from trip: {}", idTrip);
-        List<ActivityData> activityDataList = this.service.getAllActivities(idTrip);
+        List<ActivityDataResponse> activityDataList = this.service.getAllActivities(idTrip);
         return ResponseEntity.ok().body(activityDataList);
     }
 
