@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/plann.er-frontend/trips")
+@RequestMapping("/trips")
 @Slf4j
 public class TripController {
 

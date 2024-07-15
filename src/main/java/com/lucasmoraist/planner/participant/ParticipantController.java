@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/plann.er-frontend/participants")
+@RequestMapping("/participants")
 @Slf4j
 public class ParticipantController {
 
