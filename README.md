@@ -51,6 +51,22 @@ mvn clean package -Dspring.profiles.active=open
 java -jar target/planner-0.0.1-SNAPSHOT.jar --spring.profiles.active=open
 ```
 
+### Executando com docker
+- Construindo imagem
+```bash
+docker build -t planner-api \
+  --build-arg DATABASE_HOST=your_database_host \
+  --build-arg DATABASE_PORT=your_database_port \
+  --build-arg DATABASE_NAME=your_database_name \
+  --build-arg DATABASE_USER=your_database_user \
+  --build-arg DATABASE_PASSWORD=your_database_password \
+  .
+```
+- Rodando imagem
+```bash
+docker run -d -p 8080:8080 --name planner-container planner-api
+```
+
 ## Instruções de Uso
 1. Com seu projeto em execução, abra sua ferramente para testes de requisições (Insomnia ou Postman)
 2. Importe o arquivo `Testes Insomnia` que está na raiz do proejeo e já será possível realizar os testes
