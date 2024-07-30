@@ -22,3 +22,35 @@ jobs:
 
       - name: Test with maven
         run: mvn clean test
+
+    build:
+      runs-on: ubuntu-latest
+      needs: tests
+
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DATABASE_USER: ${{ secrets.DATABASE_USER }}
+        DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+        DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+        DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+        DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
+
+      steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v4
+
+        - name: Setup-java
+          uses: actions/setup-java@v4
+          with:
+            distribution: 'temurin'
+            java-version: '17'
+
+        - name: Login to Docker Hub
+          run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+        - name: Build Docker Image
+          run: docker build -t $DOCKER_USERNAME/planner-api:latest .
+
+        - name: Push Docker Image
+          run: docker push $DOCKER_USERNAME/planner-api:latest
