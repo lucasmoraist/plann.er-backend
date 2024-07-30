@@ -7,7 +7,7 @@ on:
       - master
 
 jobs:
-  test:
+  tests:
     runs-on: ubunto-latest
 
     steps:
@@ -17,8 +17,8 @@ jobs:
       - name: Setup-java
         uses: actions/setup-java@v4
         with:
-          distribution: 'dragonwell'
+          distribution: 'temurin'
           java-version: '17'
 
       - name: Test with maven
-        run: mvn -B test
+        run: mvn clean test
