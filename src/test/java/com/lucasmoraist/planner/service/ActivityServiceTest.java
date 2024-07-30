@@ -21,6 +21,7 @@ import org.springframework.test.context.ActiveProfiles;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -144,4 +145,30 @@ public class ActivityServiceTest {
 
         assertEquals("Trip not found", exception.getMessage());
     }
+
+    @Test
+    @DisplayName("GetAllActivities: Should return list of activities successfully")
+    public void case05() {
+        when(tripRepository.findById(tripId)).thenReturn(Optional.of(trip));
+        when(activityRepository.findByTripId(tripId)).thenReturn(activities);
+
+        List<ActivityDataResponse> expectedActivityDataResponses = new ArrayList<>();
+        LocalDate startAt = trip.getStartAt().toLocalDate();
+        LocalDate endAt = trip.getEndAt().toLocalDate();
+        long daysBetween = ChronoUnit.DAYS.between(startAt, endAt);
+
+        for (long i = 0; i <= daysBetween; i++) {
+            LocalDate date = startAt.plusDays(i);
+            List<ActivityData> activitiesForDate = activities.stream()
+                    .filter(activity -> activity.getOccursAt().toLocalDate().isEqual(date))
+                    .map(activity -> new ActivityData(activity.getId(), activity.getTitle(), activity.getOccursAt()))
+                    .collect(Collectors.toList());
+            expectedActivityDataResponses.add(new ActivityDataResponse(date, activitiesForDate));
+        }
+
+        List<ActivityDataResponse> returnedActivities = activityService.getAllActivities(tripId);
+
+        assertEquals(expectedActivityDataResponses, returnedActivities);
+    }
+
 }
