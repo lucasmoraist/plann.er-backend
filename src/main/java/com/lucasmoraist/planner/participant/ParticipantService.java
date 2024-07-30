@@ -18,7 +18,7 @@ public class ParticipantService {
     public void registerParticipantsToEvent(List<String> participantsToInvite, Trip trip) {
         List<Participant> participants = participantsToInvite
                 .stream()
-                .map((email -> new Participant(email, trip)))
+                .map(email -> new Participant(email, trip))
                 .toList();
         this.participantRepository.saveAll(participants);
     }

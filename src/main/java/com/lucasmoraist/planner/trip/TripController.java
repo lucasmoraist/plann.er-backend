@@ -1,6 +1,5 @@
 package com.lucasmoraist.planner.trip;
 
-import com.lucasmoraist.planner.activity.ActivityData;
 import com.lucasmoraist.planner.activity.ActivityDataResponse;
 import com.lucasmoraist.planner.activity.ActivityRequestPayload;
 import com.lucasmoraist.planner.activity.ActivityResponse;

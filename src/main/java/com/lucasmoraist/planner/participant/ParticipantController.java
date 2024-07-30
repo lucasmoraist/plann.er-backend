@@ -1,12 +1,10 @@
 package com.lucasmoraist.planner.participant;
 
-import com.lucasmoraist.planner.exception.ResourceNotFound;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController
