@@ -31,6 +31,12 @@
 				<PROFILE>prod</PROFILE>
 			</properties>
 		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<PROFILE>test</PROFILE>
+			</properties>
+		</profile>
 	</profiles>
 
 	<dependencies>
