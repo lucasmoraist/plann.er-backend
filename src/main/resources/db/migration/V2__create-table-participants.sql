@@ -1,5 +1,3 @@
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-
 CREATE TABLE participants (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -7,4 +5,4 @@ CREATE TABLE participants (
     is_confirmed BOOLEAN NOT NULL,
     trip_id UUID NOT NULL,
     FOREIGN KEY (trip_id) REFERENCES trips(id)
-)
+);
