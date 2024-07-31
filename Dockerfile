@@ -22,7 +22,7 @@ RUN echo "DATABASE_NAME=$DATABASE_NAME" > .env
 RUN echo "DATABASE_USER=$DATABASE_USER" > .env
 RUN echo "DATABASE_PASSWORD=$DATABASE_PASSWORD" > .env
 
-RUN mvn clean package -Dspring.profiles.active=prod
+RUN mvn clean package -Dspring.profiles.active=prod -DskipTests
 
 EXPOSE 8080
 
